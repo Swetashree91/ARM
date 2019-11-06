@@ -1,4 +1,4 @@
-     AREA     factorial, CODE, READONLY
+     AREA     largest_number, CODE, READONLY
      EXPORT __main
      ENTRY 
 __main  FUNCTION	
