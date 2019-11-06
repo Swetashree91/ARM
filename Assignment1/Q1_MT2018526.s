@@ -1,4 +1,4 @@
-     AREA     factorial, CODE, READONLY
+     AREA     fibonacci, CODE, READONLY
      EXPORT __main
      ENTRY 
 __main  FUNCTION	
