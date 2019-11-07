@@ -1,0 +1,5 @@
+The excel sheet contains all the values of x i have taken with 10,20 and 30 number of  iterations. 
+The true value is calculated using the C program given in the folder.
+The values obtained from arm assembly have been compared with true values and error in percentage has been found out.
+The graph shows the how the percentage of error is reducing with increasing number of iterations.
+It also shows that the lower values of x (i.e 1 to 5) are unaffected in all three cases.
