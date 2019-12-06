@@ -1,13 +1,88 @@
 	AREA     Neural_logic_gates, CODE, READONLY
 		EXPORT __main
 		IMPORT printMsg
+		IMPORT printMsg2p
+		IMPORT printMsg4p
      		 
 		ENTRY 
 __main  FUNCTION
-	      VLDR.F32 S11,=1; x1
+	
+	      BL printMsg4p;
+		  
+INPUT1    VLDR.F32 S11,=1; x1
+		  VLDR.F32 S12,=0; x2
+		  VLDR.F32 S13,=0; x3
+		  
+		  VCVT.U32.F32 S11,S11 ;
+		  VMOV.F32 R0,S11 ;
+		  BL printMsg ;
+		  VCVT.U32.F32 S12,S12 ;
+		  VMOV.F32 R0,S12 ;
+		  BL printMsg ;
+		  VCVT.U32.F32 S13,S13 ;
+		  VMOV.F32 R0,S13 ;
+		  BL printMsg ;
+		  VLDR.F32 S11,=1; x1
+		  VLDR.F32 S12,=0; x2
+		  VLDR.F32 S13,=0; x3
+		  B LOGIC_GATES;
+		  
+INPUT2    VLDR.F32 S11,=1; x1
+		  VLDR.F32 S12,=0; x2
+		  VLDR.F32 S13,=1; x3
+		  
+		  VCVT.U32.F32 S11,S11 ;
+		  VMOV.F32 R0,S11 ;
+		  BL printMsg ;
+		  VCVT.U32.F32 S12,S12 ;
+		  VMOV.F32 R0,S12 ;
+		  BL printMsg ;
+		  VCVT.U32.F32 S13,S13 ;
+		  VMOV.F32 R0,S13 ;
+		  BL printMsg ;
+		  VLDR.F32 S11,=1; x1
+		  VLDR.F32 S12,=0; x2
+		  VLDR.F32 S13,=1; x3
+		  B LOGIC_GATES;
+		
+INPUT3    VLDR.F32 S11,=1; x1
+		  VLDR.F32 S12,=1; x2
+		  VLDR.F32 S13,=0; x3
+		  
+		  VCVT.U32.F32 S11,S11 ;
+		  VMOV.F32 R0,S11 ;
+		  BL printMsg ;
+		  VCVT.U32.F32 S12,S12 ;
+		  VMOV.F32 R0,S12 ;
+		  BL printMsg ;
+		  VCVT.U32.F32 S13,S13 ;
+		  VMOV.F32 R0,S13 ;
+		  BL printMsg ;
+		  VLDR.F32 S11,=1; x1
+		  VLDR.F32 S12,=1; x2
+		  VLDR.F32 S13,=0; x3
+		  B LOGIC_GATES;
+
+INPUT4    VLDR.F32 S11,=1; x1
 		  VLDR.F32 S12,=1; x2
 		  VLDR.F32 S13,=1; x3
+		  
+		  VCVT.U32.F32 S11,S11 ;
+		  VMOV.F32 R0,S11 ;
+		  BL printMsg ;
+		  VCVT.U32.F32 S12,S12 ;
+		  VMOV.F32 R0,S12 ;
+		  BL printMsg ;
+		  VCVT.U32.F32 S13,S13 ;
+		  VMOV.F32 R0,S13 ;
+		  BL printMsg ;
+		  VLDR.F32 S11,=1; x1
+		  VLDR.F32 S12,=1; x2
+		  VLDR.F32 S13,=1; x3
+		  B LOGIC_GATES;
+		  
 				
+LOGIC_GATES
 NAND_LOGIC      VLDR.F32  S14,=0.6	;W1
 				VLDR.F32  S15,=-0.8	;W2       0
 				VLDR.F32  S16,=-0.8	;W3
@@ -32,22 +107,8 @@ OR_LOGIC        VLDR.F32  S14,=-0.1	;W1
 				VLDR.F32  S17,=-0.1	;BIAS
 				B Z_CALC
 				
-XOR_LOGIC       VLDR.F32  S14,=-5	;W1
-				VLDR.F32  S15,=20	;W2          4
-				VLDR.F32  S16,=10	;W3
-				VLDR.F32  S17,=1	;BIAS
-				B Z_CALC
-				B XNOR_LOGIC
-				
-XNOR_LOGIC      VLDR.F32  S14,=-5	;W1
-				VLDR.F32  S15,=20	;W2          5
-				VLDR.F32  S16,=10	;W3
-				VLDR.F32  S17,=1	;BIAS
-				B Z_CALC
-				B NOT_LOGIC
-				
 NOT_LOGIC       VLDR.F32  S14,=0.5	;W1
-				VLDR.F32  S15,=-0.7	;W2        6
+				VLDR.F32  S15,=-0.7	;W2        4
 				VLDR.F32  S16,=0	;W3
 				VLDR.F32  S17,=0.1	;BIAS
 				B Z_CALC
@@ -80,9 +141,11 @@ Loop 		VCMP.F32 S2, S3; Comparison done for excuting taylor series expansion of 
 			
 Loop1	 	VADD.F32 S8,S5,S10;  (1+e^z)
 			VDIV.F32 S9,S5,S8;	  g(z) = 1/(1+e^-z) == (e^z)/(1+e^z)
+			VLDR.F32 S18,=0;
+			VLDR.F32 S19,=0;
 			B OUTPUT;
 	 
-OUTPUT 	 	VLDR.F32 S20,=0.5
+OUTPUT		VLDR.F32 S20,=0.5
 			VCMP.F32 S9,S20
 			VMRS.F32 APSR_nzcv,FPSCR;Used to copy fpscr to apsr
 			ITE HI			; if g(z) > 0.5 , print 1 else print 0
@@ -97,13 +160,20 @@ OUTPUT 	 	VLDR.F32 S20,=0.5
 			CMP R5,#3
 			BEQ OR_LOGIC
 			CMP R5,#4
-			BEQ XOR_LOGIC
-			CMP R5,#5
-			BEQ XNOR_LOGIC
-			CMP R5,#6
 			BEQ NOT_LOGIC
 			
-			B stop
+			LDR R5,=0;
+			
+			BL printMsg2p;
+			ADD R6,R6,#1;
+			CMP R6,#1		
+			BEQ INPUT2;		
+			CMP R6,#2
+			BEQ INPUT3;
+			CMP R6,#3
+			BEQ INPUT4;
+			
+			B stop;
 			
 stop        B   stop	
 		  
