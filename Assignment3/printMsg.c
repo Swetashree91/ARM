@@ -5,39 +5,39 @@ void printMsg(const int a)
 {
 	 char Msg[100];
 	 char *ptr;
-	 sprintf(Msg, "%d\n", a);
+	 sprintf(Msg, "%d\t", a);
 	 ptr = Msg ;
    while(*ptr != '\0'){
       ITM_SendChar(*ptr);
       ++ptr;
    }
 }
-void printMsg2p(const int a, const int b)
+void printMsg2p()
 {
-	 char Msg[100];
+	 char Msg[10];
 	 char *ptr;
-	 sprintf(Msg, "%x", a);
+	 sprintf(Msg, "\n");
 	 ptr = Msg ;
    while(*ptr != '\0')
 	 {
       ITM_SendChar(*ptr);
       ++ptr;
    }
-	 sprintf(Msg, "%x", b);
+	 /*sprintf(Msg, "%x", b);
 	 ptr = Msg ;
    while(*ptr != '\0')
 	 {
       ITM_SendChar(*ptr);
       ++ptr;
-   }
+   }*/
 }
 
-void printMsg4p(const int a, const int b, const int c, const int d, const int e)
+void printMsg4p(const int a, const int b, const int c, const int d)
 {
 	 char Msg[100];
 	 char *ptr;
 	 // Printing the message
-	sprintf(Msg,"\nPrinting First parameter a:  ");
+	sprintf(Msg,"X1\t");
 	 ptr = Msg ;
    while(*ptr != '\0')
 	 {
@@ -45,61 +45,61 @@ void printMsg4p(const int a, const int b, const int c, const int d, const int e)
       ++ptr;
    }
 	 //Printing the first parameter
-	 sprintf(Msg, "%x", a);
-	 ptr = Msg ;
-   while(*ptr != '\0')
-	 {
-      ITM_SendChar(*ptr);
-      ++ptr;
-   }
+	 //sprintf(Msg, "%d", a);
+	 //ptr = Msg ;
+   //while(*ptr != '\0')
+	 //{
+   //   ITM_SendChar(*ptr);
+    //  ++ptr;
+   //}
 	 // Printing the message
-	 sprintf(Msg,"\nPrinting Second parameter b: ");
+	 sprintf(Msg,"X2\t");
 	 ptr = Msg ;
    while(*ptr != '\0')
 	 {
       ITM_SendChar(*ptr);
       ++ptr;
    }
-	 sprintf(Msg, "%x", b);
+	 /*sprintf(Msg, "%d", b);
 	 ptr = Msg ;
    while(*ptr != '\0')
 	 {
       ITM_SendChar(*ptr);
       ++ptr;
-   }
+   }*/
 	 // Printing the message
-	 sprintf(Msg,"\nPrinting Third parameter c: ");
+	 sprintf(Msg,"X3\t");
 	 ptr = Msg ;
    while(*ptr != '\0')
 	 {
       ITM_SendChar(*ptr);
       ++ptr;
    }
-	 sprintf(Msg, "%x", c);
+	 /*printf(Msg, "%d", c);
 	 ptr = Msg ;
    while(*ptr != '\0')
 	 {
       ITM_SendChar(*ptr);
       ++ptr;
-   }
+   }*/
 	 // Printing the message
-	 sprintf(Msg,"\nPrinting Four parameter d: ");
+	 sprintf(Msg,"NAND\tNOR\tAND\tOR\tNOT\n");
 	 ptr = Msg ;
    while(*ptr != '\0')
 	 {
       ITM_SendChar(*ptr);
       ++ptr;
    }
-	 sprintf(Msg, "%x", d);
+	 /*sprintf(Msg, "%d", d);
 	 ptr = Msg ;
    while(*ptr != '\0')
 	 {
       ITM_SendChar(*ptr);
       ++ptr;
 	 }
-
+	*/
 	 // Printing the message
-	 sprintf(Msg,"\nPrinting Fifth parameter e (check this value is correct or not): ");
+	 /*sprintf(Msg,"\nPrinting Fifth parameter e (check this value is correct or not): ");
 	 ptr = Msg ;
    while(*ptr != '\0')
 	 {
@@ -113,6 +113,6 @@ void printMsg4p(const int a, const int b, const int c, const int d, const int e)
 	 {
       ITM_SendChar(*ptr);
       ++ptr;
-   }
+   }*/
 }
 
